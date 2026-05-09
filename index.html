@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Altus Labs — Technology, elevated</title>
+  <meta name="description" content="Altus Labs builds thoughtful mobile apps and AI-powered tools designed to make everyday technology smarter, smoother, and more useful.">
+  <meta name="theme-color" content="#0E1B3D">
+
+  <!-- Open Graph (for social sharing) -->
+  <meta property="og:title" content="Altus Labs — Technology, elevated">
+  <meta property="og:description" content="We build thoughtful mobile apps and AI-powered tools that make everyday technology smarter, smoother, and more useful.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/logo.png">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="assets/favicon-192x192.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #0E1B3D;
+      --navy-dark: #0A1228;
+      --blue: #1E5FE8;
+      --blue-light: #2E86FF;
+      --gray: #5B6478;
+      --gray-light: #9CA3B0;
+      --gray-bg: #F7F8FB;
+      --border: #E5E7EB;
+      --white: #FFFFFF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--navy);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+
+    nav.scrolled {
+      border-bottom-color: var(--border);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-brand img {
+      width: 36px;
+      height: 36px;
+    }
+
+    .nav-brand span {
+      font-weight: 500;
+      font-size: 18px;
+      color: var(--navy);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 15px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 120px 0 80px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 900px;
+      background: radial-gradient(circle, rgba(46, 134, 255, 0.12) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(30, 95, 232, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-icon {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 36px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 8vw, 88px);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.8s ease-out 0.1s backwards;
+    }
+
+    .hero-tagline {
+      font-size: clamp(16px, 2.2vw, 22px);
+      font-weight: 300;
+      color: var(--gray);
+      letter-spacing: 0.08em;
+      margin-bottom: 40px;
+      animation: fadeInUp 0.8s ease-out 0.2s backwards;
+    }
+
+    .hero-tagline em {
+      color: var(--blue);
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    .hero-description {
+      font-size: clamp(15px, 1.8vw, 18px);
+      color: var(--gray);
+      max-width: 580px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+      animation: fadeInUp 0.8s ease-out 0.3s backwards;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease-out 0.4s backwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--blue);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(30, 95, 232, 0.25);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--navy);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--navy);
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 100px 0;
+    }
+
+    .section-label {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 24px;
+      max-width: 700px;
+    }
+
+    .section-subtitle {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--gray);
+      max-width: 640px;
+      line-height: 1.7;
+    }
+
+    /* ===== ABOUT ===== */
+    .about {
+      background: var(--gray-bg);
+      position: relative;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 17px;
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .about-text p:first-child {
+      font-size: 19px;
+      color: var(--navy);
+      font-weight: 400;
+    }
+
+    .about-visual {
+      position: relative;
+      aspect-ratio: 1;
+      max-width: 420px;
+      margin-left: auto;
+    }
+
+    .about-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
+      border-radius: 32px;
+      transform: rotate(-3deg);
+      opacity: 0.1;
+    }
+
+    .about-visual img {
+      position: relative;
+      width: 75%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      padding-top: 12.5%;
+    }
+
+    /* ===== WHAT WE BUILD ===== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 32px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(14, 27, 61, 0.08);
+      border-color: transparent;
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      color: white;
+    }
+
+    .feature-icon svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .feature-card h3 {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: var(--navy);
+    }
+
+    .feature-card p {
+      font-size: 15px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ===== APPS ===== */
+    .apps {
+      background: var(--gray-bg);
+    }
+
+    .apps-empty {
+      margin-top: 60px;
+      text-align: center;
+      padding: 80px 32px;
+      background: var(--white);
+      border-radius: 24px;
+      border: 1px dashed var(--border);
+    }
+
+    .apps-empty-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      color: white;
+    }
+
+    .apps-empty h3 {
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .apps-empty p {
+      color: var(--gray);
+      max-width: 480px;
+      margin: 0 auto;
+      font-size: 16px;
+    }
+
+    /* ===== CONTACT ===== */
+    .contact {
+      background: var(--navy);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: -300px;
+      right: -200px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(46, 134, 255, 0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .contact-inner {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact .section-label {
+      color: var(--blue-light);
+    }
+
+    .contact h2 {
+      color: var(--white);
+      margin: 0 auto 24px;
+    }
+
+    .contact-subtitle {
+      font-size: 18px;
+      color: var(--gray-light);
+      margin-bottom: 48px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 32px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 400;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .contact-email:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--blue-light);
+      transform: translateY(-2px);
+    }
+
+    .contact-email svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--navy-dark);
+      color: var(--gray-light);
+      padding: 48px 0 32px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-brand img {
+      width: 32px;
+      height: 32px;
+    }
+
+    .footer-brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-brand-text strong {
+      color: var(--white);
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    .footer-brand-text span {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--gray-light);
+    }
+
+    .footer-copyright {
+      font-size: 13px;
+      color: var(--gray-light);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .about-visual {
+        order: -1;
+        margin: 0 auto;
+        max-width: 280px;
+      }
+
+      section {
+        padding: 72px 0;
+      }
+
+      .hero {
+        padding: 100px 0 60px;
+        min-height: auto;
+      }
+
+      .hero-icon {
+        width: 96px;
+        height: 96px;
+        margin-bottom: 28px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <img src="assets/icon.png" alt="Altus Labs">
+        <span>Altus Labs</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">What we build</a></li>
+        <li><a href="#apps">Apps</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <img src="assets/icon.png" alt="Altus Labs icon" class="hero-icon">
+        <h1>Altus Labs</h1>
+        <p class="hero-tagline">Technology, <em>elevated</em></p>
+        <p class="hero-description">
+          We build thoughtful mobile apps and AI-powered tools designed to make everyday technology smarter, smoother, and more useful.
+        </p>
+        <div class="hero-buttons">
+          <a href="#apps" class="btn btn-primary">View our apps</a>
+          <a href="#contact" class="btn btn-secondary">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="section-label">About</p>
+          <h2 class="section-title">Building software that rises above the noise.</h2>
+          <p>Altus Labs is an independent software studio focused on crafting mobile applications and intelligent tools that genuinely help people.</p>
+          <p>The name <em>Altus</em> is Latin for "high" or "elevated" — and that's the standard we hold ourselves to. Every product we ship is designed with care, built with intention, and engineered to last.</p>
+          <p>As we grow, we're investing deeply in AI to build a new generation of apps that don't just respond — they understand.</p>
+        </div>
+        <div class="about-visual">
+          <img src="assets/icon.png" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT WE BUILD ===== -->
+  <section id="work">
+    <div class="container">
+      <p class="section-label">What we build</p>
+      <h2 class="section-title">Apps and tools, refined.</h2>
+      <p class="section-subtitle">From clean, focused mobile experiences to intelligent assistants — we build for people who care about how their software works and feels.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="2"></rect>
+              <line x1="12" y1="18" x2="12" y2="18"></line>
+            </svg>
+          </div>
+          <h3>Mobile Apps</h3>
+          <p>Native-feeling Android applications built for performance, simplicity, and delight. We sweat the details so users don't have to.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M12 1v6m0 10v6m11-11h-6M7 12H1m15.5-7.5l-4.2 4.2m-4.6 4.6l-4.2 4.2m12.4 0l-4.2-4.2M7.7 7.7L3.5 3.5"></path>
+            </svg>
+          </div>
+          <h3>AI Integration</h3>
+          <p>Bringing intelligence into everyday workflows. We're building toward a future where apps anticipate, adapt, and assist meaningfully.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <h3>Thoughtful Design</h3>
+          <p>Every pixel and interaction is intentional. We design products that respect the user's time, attention, and privacy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== APPS ===== -->
+  <section id="apps" class="apps">
+    <div class="container">
+      <p class="section-label">Our apps</p>
+      <h2 class="section-title">Coming soon to the Play Store.</h2>
+      <p class="section-subtitle">We're putting the finishing touches on our first releases. Check back soon — or get in touch to learn what we're working on.</p>
+
+      <div class="apps-empty">
+        <div class="apps-empty-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+            <polygon points="3 3 21 12 3 21 3 12 12 12 3 3"></polygon>
+          </svg>
+        </div>
+        <h3>Our first apps are in the works</h3>
+        <p>We're crafting our first releases with the same care that goes into everything we build. Stay tuned — they'll be here soon.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <p class="section-label">Get in touch</p>
+        <h2 class="section-title">Let's build something together.</h2>
+        <p class="contact-subtitle">Have a project in mind, a partnership idea, or just want to say hello? We'd love to hear from you.</p>
+        <a href="mailto:altuslabstech@gmail.com" class="contact-email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          altuslabstech@gmail.com
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="assets/icon.png" alt="Altus Labs">
+          <div class="footer-brand-text">
+            <strong>Altus Labs</strong>
+            <span>TECHNOLOGY, ELEVATED</span>
+          </div>
+        </div>
+        <p class="footer-copyright">© <span id="year"></span> Altus Labs. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Auto-update copyright year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Add scroll-aware nav border
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+  </script>
+
+</body>
+</html>
